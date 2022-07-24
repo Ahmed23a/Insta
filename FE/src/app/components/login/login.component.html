@@ -1,0 +1,36 @@
+<div class="vh-100 position-relative" id="particles-js">
+
+    <div class="position-absolute w-50 flex-column justify-content-center align-items-center top-50 start-50 translate-middle">
+
+        <div *ngIf="errMsg" class="alert alert-danger">
+            <h3>{{errMsg}}</h3>
+        </div>
+        <form class="w-75 mx-auto text-white" [formGroup]="loginForm" (ngSubmit)="login()">
+            
+                       
+            <div class="p-1">
+                <label for="email">Email </label>
+                <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control"/>
+                <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="p-1 rounded alert-danger">
+                    <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required</p>
+                    <p *ngIf="loginForm.get('email')?.errors?.['email']">Email must be in right format </p>                    
+                </div>
+            </div> 
+
+            
+            <div class="p-1">
+                <label for="Password">Password </label>
+                <input type="password" id="Password" formControlName="password" placeholder="Password" class="form-control"/>
+                <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="p-1 rounded alert-danger">
+                    <p *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</p>
+                    <p *ngIf="loginForm.get('password')?.errors?.['pattern']">must be Valid</p>                    
+                </div>
+            </div>  
+
+        
+            
+            <button [disabled]="!loginForm.valid" class="btn btn-primary float-end mt-3">Login</button>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
